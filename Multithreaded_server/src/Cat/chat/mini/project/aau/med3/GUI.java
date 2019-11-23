@@ -54,20 +54,27 @@ class GUI extends Thread {
     }
 
             @Override
-            public void run() {
+            public void run() { // run method for displaying gui and receiving and sending messages from gui
+                
                 try {
-                    UIManager.setLookAndFeel(UIManager
+                    // making the GUi able to run and display all components properly
+                    UIManager.setLookAndFeel(UIManager 
                             .getSystemLookAndFeelClassName());
+                    
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                
                 try {
-                    displayMessages();
+                    
+                    displayMessages(); // method that displays the GUI
+                    
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                // making a thread for reading messages, so that a client could simoultaniously receive and send messages
                 readMessage reader = new readMessage(dis, chatText);
-                reader.start();
+                reader.start(); // starting the thread
             }
 
 
