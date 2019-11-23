@@ -138,8 +138,8 @@ class GUI extends Thread {
         right.weightx = 1.0D;
         right.weighty = 1.0D;
 
-        bottomPanel.add(messageTyped, left); // poop
-        bottomPanel.add(sendMessage, right); // poop 2
+        bottomPanel.add(messageTyped, left); // adding the jtextarea to JPanel
+        bottomPanel.add(sendMessage, right); // adding the button to the Jpanel
 
         mainPanel.add(BorderLayout.SOUTH, bottomPanel);
         mainPanel.add(BorderLayout.PAGE_START, chat);
