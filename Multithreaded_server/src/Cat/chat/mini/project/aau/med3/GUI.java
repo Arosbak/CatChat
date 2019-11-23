@@ -124,7 +124,8 @@ class GUI extends Thread {
 
 
         mainPanel.add(new JScrollPane(chatText), BorderLayout.CENTER); // adding the scroll bar to the text area
-          
+        
+        // setting up the layout of the panel and objects in it
         GridBagConstraints left = new GridBagConstraints();
         left.anchor = GridBagConstraints.LINE_START;
         left.fill = GridBagConstraints.HORIZONTAL;
@@ -138,11 +139,11 @@ class GUI extends Thread {
         right.weightx = 1.0D;
         right.weighty = 1.0D;
 
-        bottomPanel.add(messageTyped, left); // adding the jtextarea to JPanel
+        bottomPanel.add(messageTyped, left); // adding the jtextfield to JPanel
         bottomPanel.add(sendMessage, right); // adding the button to the Jpanel
 
-        mainPanel.add(BorderLayout.SOUTH, bottomPanel);
-        mainPanel.add(BorderLayout.PAGE_START, chat);
+        mainPanel.add(BorderLayout.SOUTH, bottomPanel); // adding the one Jpanel to the main Jpanel
+        mainPanel.add(BorderLayout.PAGE_START, chat); // addign the JTextarea to the main Jpanel
         
         // adding the jpanel to the jframe
         newFrame.add(mainPanel);
