@@ -110,17 +110,17 @@ class GUI extends Thread {
         sendMessage.setForeground(Color.BLUE); // settign the colour of text to blue
         sendMessage.addActionListener(new sendMessageButtonListener()); // assigning a message listener
 
-        chatText = new JTextArea();
-        chatText.setEditable(false);
-        chatText.setFont(new Font("Monospaced", Font.PLAIN, 30));
-        chatText.setBackground(Color.WHITE);
-        chatText.setLineWrap(true);
+        chatText = new JTextArea(); // initializing text area for displaying the chat messages
+        chatText.setEditable(false); // making it not editable
+        chatText.setFont(new Font("Monospaced", Font.PLAIN, 30)); // setting the font
+        chatText.setBackground(Color.WHITE); // setting the background colour to white
+        chatText.setLineWrap(true); // makes sure that the text is not pilled next to each other
 
         
-        chat =  new JLabel("", profile , SwingConstants.CENTER);
-        chat.setFont(new Font("Monospaced", Font.PLAIN, 50));
-        chat.setText(username);
-        chat.setVerticalAlignment(SwingConstants.CENTER);
+        chat =  new JLabel("", profile , SwingConstants.CENTER); // a label for displaying the current user's username and profile picture
+        chat.setFont(new Font("Monospaced", Font.PLAIN, 50)); // setting the font
+        chat.setText(username); // setting the use's name to the passed string parameter from the client
+        chat.setVerticalAlignment(SwingConstants.CENTER); // setting the position of the component
 
 
         mainPanel.add(new JScrollPane(chatText), BorderLayout.CENTER);
