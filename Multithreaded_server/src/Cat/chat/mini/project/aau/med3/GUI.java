@@ -90,25 +90,25 @@ class GUI extends Thread {
         bottomPanel.setBackground(Color.PINK);
         bottomPanel.setLayout(new GridBagLayout());
 
-        messageTyped = new JTextField("Type a message...");
-        messageTyped.setForeground(Color.GRAY);
-        messageTyped.setFont(new Font("Monospaced", Font.PLAIN, 30));
-        messageTyped.addMouseListener(new MouseAdapter(){
-                                          @Override
+        messageTyped = new JTextField("Type a message..."); // giving the text field and initial message to display
+        messageTyped.setForeground(Color.GRAY); // setting the colour of the initial message to grey
+        messageTyped.setFont(new Font("Monospaced", Font.PLAIN, 30)); // setting the font
+        messageTyped.addMouseListener(new MouseAdapter(){   // adding an action listener so that the "type a message..." would dissapear
+                                          @Override         // when clicked
                                           public void mouseClicked(MouseEvent e){
                                               messageTyped.setText("");
-                                              messageTyped.setForeground(Color.BLACK);
-                                          }
+                                              messageTyped.setForeground(Color.BLACK); // the typed message colour is set to black once
+                                          }                                            // once the user presses on the text field
                                       }
         );
 
 
         messageTyped.requestFocusInWindow();
 
-        sendMessage = new JButton(sendIcon);
-        sendMessage.setBackground(Color.WHITE);
-        sendMessage.setForeground(Color.BLUE);
-        sendMessage.addActionListener(new sendMessageButtonListener());
+        sendMessage = new JButton(sendIcon); // a button for sending the message is initialized
+        sendMessage.setBackground(Color.WHITE); // setting the colour of its background to white
+        sendMessage.setForeground(Color.BLUE); // settign the colour of text to blue
+        sendMessage.addActionListener(new sendMessageButtonListener()); // assigning a message listener
 
         chatText = new JTextArea();
         chatText.setEditable(false);
