@@ -139,7 +139,7 @@ class GUI extends Thread {
         right.weighty = 1.0D;
 
         bottomPanel.add(messageTyped, left); // poop
-        bottomPanel.add(sendMessage, right);
+        bottomPanel.add(sendMessage, right); // poop 2
 
         mainPanel.add(BorderLayout.SOUTH, bottomPanel);
         mainPanel.add(BorderLayout.PAGE_START, chat);
