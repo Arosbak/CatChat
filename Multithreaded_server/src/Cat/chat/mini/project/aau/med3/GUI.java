@@ -81,14 +81,14 @@ class GUI extends Thread {
 
 
     public void displayMessages() throws IOException {
-        newFrame.setIconImage(logo.getImage());
+        newFrame.setIconImage(logo.getImage()); // giving the frame a new icon
 
-        mainPanel = new JPanel();
-        mainPanel.setLayout(new BorderLayout());
+        mainPanel = new JPanel(); // initializing a JPanel
+        mainPanel.setLayout(new BorderLayout()); // settign the layout of JPanel
 
-        bottomPanel = new JPanel();
-        bottomPanel.setBackground(Color.PINK);
-        bottomPanel.setLayout(new GridBagLayout());
+        bottomPanel = new JPanel(); // initializing another JPanel
+        bottomPanel.setBackground(Color.PINK); // setting its background to pink
+        bottomPanel.setLayout(new GridBagLayout()); // setting its layout to grid layout
 
         messageTyped = new JTextField("Type a message..."); // giving the text field and initial message to display
         messageTyped.setForeground(Color.GRAY); // setting the colour of the initial message to grey
@@ -123,7 +123,7 @@ class GUI extends Thread {
         chat.setVerticalAlignment(SwingConstants.CENTER); // setting the position of the component
 
 
-        mainPanel.add(new JScrollPane(chatText), BorderLayout.CENTER);
+        mainPanel.add(new JScrollPane(chatText), BorderLayout.CENTER); // adding the scroll bar to the text area
 
         GridBagConstraints left = new GridBagConstraints();
         left.anchor = GridBagConstraints.LINE_START;
