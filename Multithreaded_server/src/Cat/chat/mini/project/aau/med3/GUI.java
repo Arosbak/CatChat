@@ -116,7 +116,7 @@ class GUI extends Thread {
         chatText.setBackground(Color.WHITE);
         chatText.setLineWrap(true);
 
-        //client 1
+        
         chat =  new JLabel("", profile , SwingConstants.CENTER);
         chat.setFont(new Font("Monospaced", Font.PLAIN, 50));
         chat.setText(username);
@@ -153,17 +153,17 @@ class GUI extends Thread {
 
 
 
-    class sendMessageButtonListener implements ActionListener {
+    class sendMessageButtonListener implements ActionListener {  // creating an action listener for the message button
         public void actionPerformed(ActionEvent event) {
-            if (messageTyped.getText().length() < 1) {
+            if (messageTyped.getText().length() < 1) {  // if the text field is empty the message is not sent
             } else {
                 try {
-                    dos.writeUTF(messageTyped.getText());
-                    chatText.append(username + ": " + messageTyped.getText() + "\n");
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    dos.writeUTF(messageTyped.getText()); // retreives the message from the text field and sends it to the server
+                    chatText.append(username + ": " + messageTyped.getText() + "\n"); // adds the same message by appending it to the
+                } catch (IOException e) {                                             // text area for the current gui, so that the
+                    e.printStackTrace();                                              // client can see its own sent message
                 }
-                messageTyped.setText("");
+                messageTyped.setText(""); // sets the text field to empty after sending the message
             }
             messageTyped.requestFocusInWindow();
         }
