@@ -29,7 +29,7 @@ import javax.swing.UIManager;
 
 
 class GUI extends Thread {
-
+    // declaring and initializing needed objects
     String appName = "Cat Chat";
     JFrame newFrame = new JFrame(appName);
     JButton sendMessage;
@@ -41,10 +41,10 @@ class GUI extends Thread {
     JPanel bottomPanel;
     JPanel mainPanel;
 
-    final DataInputStream dis;
-    final DataOutputStream dos;
-    final String username;
-    final ImageIcon profile;
+    final DataInputStream dis; // datainputputstream for retrieving messages and displaying them
+    final DataOutputStream dos; // dataoutputstream for sending the messages
+    final String username;   // username for Jlabel that is passed as an argument
+    final ImageIcon profile; // profile icon that is passed as an argument
 
     public GUI(DataInputStream dis, DataOutputStream dos, String username, ImageIcon profile){
         this.dis = dis;
