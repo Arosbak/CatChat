@@ -138,7 +138,7 @@ class GUI extends Thread {
         right.weightx = 1.0D;
         right.weighty = 1.0D;
 
-        bottomPanel.add(messageTyped, left);
+        bottomPanel.add(messageTyped, left); // poop
         bottomPanel.add(sendMessage, right);
 
         mainPanel.add(BorderLayout.SOUTH, bottomPanel);
