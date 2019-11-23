@@ -124,7 +124,7 @@ class GUI extends Thread {
 
 
         mainPanel.add(new JScrollPane(chatText), BorderLayout.CENTER); // adding the scroll bar to the text area
-
+          
         GridBagConstraints left = new GridBagConstraints();
         left.anchor = GridBagConstraints.LINE_START;
         left.fill = GridBagConstraints.HORIZONTAL;
@@ -143,11 +143,12 @@ class GUI extends Thread {
 
         mainPanel.add(BorderLayout.SOUTH, bottomPanel);
         mainPanel.add(BorderLayout.PAGE_START, chat);
-
+        
+        // adding the jpanel to the jframe
         newFrame.add(mainPanel);
-        newFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        newFrame.setSize(600, 600);
-        newFrame.setVisible(true);
+        newFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // close the thread when exit button is pressed
+        newFrame.setSize(600, 600); // setting the size of the gui
+        newFrame.setVisible(true); // making it visible
 
     }
 
