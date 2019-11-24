@@ -1,7 +1,5 @@
 package Cat.chat.mini.project.aau.med3;
 
-import Cat.chat.mini.project.aau.med3.ClientHandler;
-
 import java.io.*;
 import java.util.*;
 import java.net.*;
