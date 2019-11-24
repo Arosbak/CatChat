@@ -10,17 +10,20 @@ import java.net.*;
 
 public class Server
 {
+    // making a list for all connected clients
     static List<ClientHandler> clients = new ArrayList<ClientHandler>();
-
+    
+    // method for sending the message to all clients except one
     static void broadcast(String msg, int whichClient) throws IOException {
-        for (int i = 0; i < clients.size(); i++) {
-            if(i != whichClient) {
-                ClientHandler st = clients.get(i);
-                st.dos.writeUTF(msg);
+        for (int i = 0; i < clients.size(); i++) { // shuffles through the list fo connected clients
+            if(i != whichClient) { // if the client is not the passed number of the client
+                ClientHandler st = clients.get(i);  // gets data output stream of that client
+                st.dos.writeUTF(msg); // sending the passed message to that client
             }
         }
     }
-
+    
+    // server main method
     public static void main(String[] args) throws IOException
     {
         // server is listening on port 5056
@@ -37,24 +40,28 @@ public class Server
             {
                 // socket object to receive incoming client requests
                 s = ss.accept();
-
+                
+                // prints out if the client is connected
                 System.out.println("A new client is connected : " + s);
 
                 // obtaining input and out streams
                 DataInputStream dis = new DataInputStream(s.getInputStream());
                 DataOutputStream dos = new DataOutputStream(s.getOutputStream());
-
+                
+                // prints out if the thread has been assigned to the client
                 System.out.println("Assigning new thread for this client");
 
-                // create a new thread object
+                // create a new thread object for handeling the client
                 ClientHandler t =  new ClientHandler(s, dis, dos, whichClient);
 
                 // Invoking the start() method
                 t.start();
-
+                
+                // adding the client to the list
                 clients.add(t);
-                whichClient++;
-
+                whichClient++; // increaseing the number for the next client
+                
+                // prints out the number of connected clients
                 System.out.println("number of connected clients: " + clients.size());
             }
             catch (Exception e){
