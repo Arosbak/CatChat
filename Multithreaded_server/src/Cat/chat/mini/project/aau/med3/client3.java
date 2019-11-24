@@ -1,6 +1,8 @@
+package Cat.chat.mini.project.aau.med3;
+
+import javax.swing.*;
 import java.io.*;
 import java.net.*;
-import java.util.Scanner;
 
 // Client class
 public class client3
