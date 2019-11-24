@@ -26,7 +26,7 @@ public class client1
             DataInputStream dis = new DataInputStream(s.getInputStream());
             DataOutputStream dos = new DataOutputStream(s.getOutputStream());
 
-            // the following loop performs the exchange of
+            // the following thread performs the exchange of
             // information between client and client handler
 
             GUI gui = new GUI(dis, dos, username, profile);
