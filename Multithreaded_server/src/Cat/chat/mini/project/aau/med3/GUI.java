@@ -13,6 +13,7 @@ import java.awt.event.MouseEvent;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.Socket;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -24,7 +25,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 
@@ -35,8 +35,8 @@ class GUI extends Thread {
     JButton sendMessage;
     JTextField messageTyped;
     JTextArea chatText;
-    Icon sendIcon = new ImageIcon("send2.jpg");
-    ImageIcon logo = new ImageIcon("icon.png");
+    Icon sendIcon = new ImageIcon("resources/send.png");
+    ImageIcon logo = new ImageIcon("resources/icon.png");
     JLabel chat;
     JPanel bottomPanel;
     JPanel mainPanel;
@@ -46,6 +46,7 @@ class GUI extends Thread {
     final String username;   // username for Jlabel that is passed as an argument
     final ImageIcon profile; // profile icon that is passed as an argument
 
+
     public GUI(DataInputStream dis, DataOutputStream dos, String username, ImageIcon profile){
         this.dis = dis;
         this.dos = dos;
@@ -53,30 +54,44 @@ class GUI extends Thread {
         this.profile = profile;
     }
 
-            @Override
-            public void run() { // run method for displaying gui and receiving and sending messages from gui
-                
-                try {
-                    // making the GUi able to run and display all components properly
-                    UIManager.setLookAndFeel(UIManager 
-                            .getSystemLookAndFeelClassName());
-                    
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                
-                try {
-                    
-                    displayMessages(); // method that displays the GUI
-                    
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                // making a thread for reading messages, so that a client could simoultaniously receive and send messages
-                readMessage reader = new readMessage(dis, chatText);
-                reader.start(); // starting the thread
-            }
+    @Override
+    public void run() { // run method for displaying gui and receiving and sending messages from gui
 
+        try {
+            // making the GUi able to run and display all components properly
+            UIManager.setLookAndFeel(UIManager
+                    .getSystemLookAndFeelClassName());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+
+            displayMessages(); // method that displays the GUI
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+            // making a thread for reading messages, so that a client could simoultaniously receive and send messages
+        readMessage reader = new readMessage(dis, chatText);
+        reader.start(); // starting the thread
+
+        while (true) {
+            if (!client3.isConnected) {
+                newFrame.dispose();
+                break;
+            }
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                newFrame.dispose();
+                break;
+            }
+        }
+
+    }
 
 
 
@@ -116,7 +131,7 @@ class GUI extends Thread {
         chatText.setBackground(Color.WHITE); // setting the background colour to white
         chatText.setLineWrap(true); // makes sure that the text is not pilled next to each other
 
-        
+
         chat =  new JLabel("", profile , SwingConstants.CENTER); // a label for displaying the current user's username and profile picture
         chat.setFont(new Font("Monospaced", Font.PLAIN, 50)); // setting the font
         chat.setText(username); // setting the use's name to the passed string parameter from the client
@@ -124,7 +139,7 @@ class GUI extends Thread {
 
 
         mainPanel.add(new JScrollPane(chatText), BorderLayout.CENTER); // adding the scroll bar to the text area
-        
+
         // setting up the layout of the panel and objects in it
         GridBagConstraints left = new GridBagConstraints();
         left.anchor = GridBagConstraints.LINE_START;
@@ -144,7 +159,7 @@ class GUI extends Thread {
 
         mainPanel.add(BorderLayout.SOUTH, bottomPanel); // adding the one Jpanel to the main Jpanel
         mainPanel.add(BorderLayout.PAGE_START, chat); // addign the JTextarea to the main Jpanel
-        
+
         // adding the jpanel to the jframe
         newFrame.add(mainPanel);
         newFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // close the thread when exit button is pressed

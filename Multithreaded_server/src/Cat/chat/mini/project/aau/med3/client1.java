@@ -1,4 +1,3 @@
-  
 package Cat.chat.mini.project.aau.med3;
 
 import javax.swing.*;
@@ -8,11 +7,11 @@ import java.net.*;
 // Client class
 public class client1
 {
-    public static void main(String[] args) throws IOException
+    public void main(String[] args) throws IOException
     {
         try
         {
-            ImageIcon profile = new ImageIcon("cat1.png");
+            ImageIcon profile = new ImageIcon("resources/cat1.png");
             String username = "Sneeze boi";
 
             // getting localhost ip

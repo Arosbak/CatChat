@@ -11,7 +11,7 @@ public class client2
     {
         try
         {
-            ImageIcon profile = new ImageIcon("cat2.png");
+            ImageIcon profile = new ImageIcon("resources/cat2.png");
             String username = "Sad boi";
 
             // getting localhost ip
