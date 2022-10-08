@@ -5,7 +5,7 @@ import java.io.*;
 import java.net.*;
 
 // Client class
-public class client3
+public class client
 {
     private static DataInputStream dis;
     private static DataOutputStream dos;

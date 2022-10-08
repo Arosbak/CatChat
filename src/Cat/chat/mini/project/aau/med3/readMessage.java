@@ -3,7 +3,6 @@ package Cat.chat.mini.project.aau.med3;
 import javax.swing.*;
 import java.io.DataInputStream;
 import java.io.IOException;
-import java.net.Socket;
 
 // class for receiving messages from the server
 class readMessage extends Thread{
@@ -27,7 +26,7 @@ class readMessage extends Thread{
 
 
             } catch (IOException e) {
-                client3.isConnected = false;
+                client.isConnected = false;
                 e.printStackTrace();
                 break;
             }

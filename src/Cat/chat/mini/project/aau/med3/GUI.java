@@ -13,7 +13,6 @@ import java.awt.event.MouseEvent;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.Socket;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -78,7 +77,7 @@ class GUI extends Thread {
         reader.start(); // starting the thread
 
         while (true) {
-            if (!client3.isConnected) {
+            if (!client.isConnected) {
                 newFrame.dispose();
                 break;
             }
