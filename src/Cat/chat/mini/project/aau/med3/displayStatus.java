@@ -40,7 +40,7 @@ public class displayStatus {
     public void updateLabel(String newMessage) {
         statusLabel.setText(convertToMultiline(newMessage));
 
-        if (pack == true) {
+        if (pack) {
             Frame.pack();
         }
     }

@@ -27,7 +27,7 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
 
-class GUI extends Thread {
+class gui extends Thread {
     // declaring and initializing needed objects
     String appName = "Cat Chat";
     JFrame newFrame = new JFrame(appName);
@@ -46,7 +46,7 @@ class GUI extends Thread {
     final ImageIcon profile; // profile icon that is passed as an argument
 
 
-    public GUI(DataInputStream dis, DataOutputStream dos, String username, ImageIcon profile){
+    public gui(DataInputStream dis, DataOutputStream dos, String username, ImageIcon profile){
         this.dis = dis;
         this.dos = dos;
         this.username = username;
@@ -66,13 +66,12 @@ class GUI extends Thread {
         }
 
         try {
-
             displayMessages(); // method that displays the GUI
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-            // making a thread for reading messages, so that a client could simoultaniously receive and send messages
+
+        // making a thread for reading messages, so that a client could simultaneously receive and send messages
         readMessage reader = new readMessage(dis, chatText);
         reader.start(); // starting the thread
 
@@ -91,8 +90,6 @@ class GUI extends Thread {
         }
 
     }
-
-
 
     public void displayMessages() throws IOException {
         newFrame.setIconImage(logo.getImage()); // giving the frame a new icon
@@ -116,7 +113,6 @@ class GUI extends Thread {
                                       }
         );
 
-
         messageTyped.requestFocusInWindow();
 
         sendMessage = new JButton(sendIcon); // a button for sending the message is initialized
@@ -130,12 +126,10 @@ class GUI extends Thread {
         chatText.setBackground(Color.WHITE); // setting the background colour to white
         chatText.setLineWrap(true); // makes sure that the text is not pilled next to each other
 
-
         chat =  new JLabel("", profile , SwingConstants.CENTER); // a label for displaying the current user's username and profile picture
         chat.setFont(new Font("Monospaced", Font.PLAIN, 50)); // setting the font
         chat.setText(username); // setting the use's name to the passed string parameter from the client
         chat.setVerticalAlignment(SwingConstants.CENTER); // setting the position of the component
-
 
         mainPanel.add(new JScrollPane(chatText), BorderLayout.CENTER); // adding the scroll bar to the text area
 
@@ -166,8 +160,6 @@ class GUI extends Thread {
         newFrame.setVisible(true); // making it visible
 
     }
-
-
 
     class sendMessageButtonListener implements ActionListener {  // creating an action listener for the message button
         public void actionPerformed(ActionEvent event) {

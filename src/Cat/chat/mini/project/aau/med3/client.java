@@ -4,72 +4,66 @@ import javax.swing.*;
 import java.io.*;
 import java.net.*;
 
-// Client class
 public class client
 {
     private static DataInputStream dis;
     private static DataOutputStream dos;
-    private static Socket s;
-    private static GUI gui;
-    private static String error;
-    private static int time;
+    private static Socket sock;
     static boolean isConnected;
 
-    public static void main(String[] args) throws IOException
+    public static void main(String[] args)
     {
-
         displayStatus clientStatus = new displayStatus("Client Status", true);
         isConnected = true;
-        time = 0;
+        int time = 0;
+
         try
         {
-            ImageIcon profile = new ImageIcon("resources/cat3.png");
+            ImageIcon profileIcon = new ImageIcon("resources/cat3.png");
             String username = "Shocked boi";
 
             // getting localhost ip
-            InetAddress ip = InetAddress.getByName("");
+            InetAddress ip = InetAddress.getByName("192.168.50.26");
 
-            // establish the connection with server port 5056
-            s = new Socket(ip, 59298);
+            // Establish the connection with server port 5056
+            sock = new Socket(ip, 59298);
 
-            // obtaining input and out streams
-            dis = new DataInputStream(s.getInputStream());
-            dos = new DataOutputStream(s.getOutputStream());
+            // Obtaining input and out streams
+            dis = new DataInputStream(sock.getInputStream());
+            dos = new DataOutputStream(sock.getOutputStream());
 
-            // the following loop performs the exchange of
-            // information between client and client handler
+            gui graphicalInterface = new gui(dis, dos, username, profileIcon);
+            graphicalInterface.start();
 
-            gui = new GUI(dis, dos, username, profile);
-            gui.start();
-            dos.writeUTF(username); // for passing a username of the current client to the server
+            // For passing a username of the current client to the server
+            dos.writeUTF(username);
 
-
-           // for checking if client is still connected to server
+            // For checking if client is still connected to server
             while (true) {
-                System.out.println("client has been running for: " + time + " seconds");
+                System.out.println("Client has been running for: " + time + " seconds");
 
                 if (!isConnected) {
-                    System.out.print("disconnected");
-                    throw new Exception("Server disconnected");
+                    System.out.print("Disconnected...");
+                    break;
                 }
-
                 Thread.sleep(1000);
-                time ++;
+                time++;
             }
 
         }
 
-        catch(Exception e){  // if connection is failed client is closed
+        // If connection is failed client is closed
+        catch(Exception e){
 
             StringWriter sw = new StringWriter();
             e.printStackTrace(new PrintWriter(sw));
             e.printStackTrace();
-            error = sw.toString();
+            String error = sw.toString();
 
                 try {
                     dis.close();
                     dos.close();
-                    s.close();
+                    sock.close();
                 }
                 catch (Exception m) {
                     m.printStackTrace();
