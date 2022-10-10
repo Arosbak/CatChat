@@ -4,6 +4,11 @@ import javax.swing.*;
 import java.io.DataInputStream;
 import java.io.IOException;
 
+/**
+ * <h1>readMessage</h1>
+ *
+ * @author Arijus Grotuzas
+ */
 class readMessage extends Thread{
     final DataInputStream dis;
     final JTextArea chatText;
@@ -19,9 +24,9 @@ class readMessage extends Thread{
             String received;
 
             try {
-                received = dis.readUTF(); // Getting the message from the server
-                chatText.append(received  + "\n"); // Appending it to the TextArea
-                System.out.println(received); // Printing out to the client
+                received = dis.readUTF();
+                chatText.append(received  + "\n");
+                System.out.println(received);
             }
             catch (IOException e) {
                 client.isConnected = false;

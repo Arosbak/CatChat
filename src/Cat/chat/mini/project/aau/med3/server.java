@@ -6,15 +6,28 @@ import java.net.*;
 import java.util.List;
 
 
+/**
+ * <h1>Server</h1>
+ * A simple chat server-side application that instantiates a new thread for handling communication with each client.
+ * The server listens on port 59298 and creates a communication between multiple clients over a local network.
+ *
+ * @author  Arijus Grotuzas
+ */
 public class server
 {
     static List<clientHandler> clients = new ArrayList<>();
     static int numOfClients = 0;
-    static String localIP = server.getLocalIP();
-    static int portNumber = 59298;
+    final static String localIP = server.getLocalIP();
+    final static int portNumber = 59298;
 
-    // Method for sending the message to all clients except one
-    static void broadcast(String msg, int notSendTo) throws IOException {
+    /**
+     * A method for broadcasting a message to all the connected clients.
+     *
+     * @param msg A message to broadcast to all the clients
+     * @param notSendTo Client ID to which the message should not be sent e.g. the sender of the message
+     * @throws IOException f
+     */
+    static void broadcastMessage(String msg, int notSendTo) throws IOException {
         for (int i = 0; i < clients.size(); i++) {
             if(i != notSendTo) {
                 clientHandler handler = clients.get(i);
@@ -23,7 +36,9 @@ public class server
         }
     }
 
-    // Method for reassigning client IDs
+    /**
+     * A method for reassigning the IDs of all the clients in case one of the clients had disconnected.
+     */
     static void reassignHandlerIDs(){
         for (int i = 0; i < clients.size(); i++){
             clientHandler handler = clients.get(i);
@@ -31,8 +46,13 @@ public class server
         }
     }
 
-    // Method for retrieving the Sever's local IP address
-    public static String getLocalIP(){
+    /**
+     * A method for retrieving the local IP address of the current machine.
+     *
+     * @return Local IP address of the machine the application is running on
+     * @throws RuntimeException f
+     */
+    public static String getLocalIP() throws RuntimeException {
         try (final DatagramSocket datagramSocket = new DatagramSocket()) {
             datagramSocket.connect(InetAddress.getByName("8.8.8.8"), 12345);
             return datagramSocket.getLocalAddress().getHostAddress();
@@ -43,14 +63,15 @@ public class server
 
     public static void main(String[] args) throws IOException
     {
-        ServerSocket ss = new ServerSocket(portNumber);
-
         // Initialize a gui that displays server's info
-        displayStatus serverStatus = new displayStatus("Number of connected clients: " + clients.size(), false);
+        displayStatus serverStatus = new displayStatus("Server status" , false);
         serverStatus.run();
+
+        // Open server socket for communication
+        ServerSocket serverSock = new ServerSocket(portNumber);
         System.out.println("Running on IP Address: " + localIP);
 
-        // Running infinite loop for getting client request
+        // Loop for getting client request
         while (true)
         {
             Socket sock = null;
@@ -60,7 +81,7 @@ public class server
                         "\n Local IP Address: " + localIP + "\n Listening on port: " + portNumber);
 
                 // Socket object to receive incoming client requests
-                sock = ss.accept();
+                sock = serverSock.accept();
 
                 // Prints out if the client is connected
                 System.out.println("A new client is connected : " + sock);

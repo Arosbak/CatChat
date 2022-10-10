@@ -6,6 +6,8 @@
 
 .mtj.tmp/
 
+artifacts/
+
 *.jar
 *.war
 *.nar

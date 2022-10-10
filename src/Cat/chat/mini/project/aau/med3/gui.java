@@ -158,23 +158,23 @@ class gui extends Thread {
         newFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // close the thread when exit button is pressed
         newFrame.setSize(600, 600); // setting the size of the gui
         newFrame.setVisible(true); // making it visible
-
     }
 
     class sendMessageButtonListener implements ActionListener {  // creating an action listener for the message button
         public void actionPerformed(ActionEvent event) {
-            if (messageTyped.getText().length() < 1) {  // if the text field is empty the message is not sent
-            } else {
+            if (messageTyped.getText().length() > 1) {  // if the text field is empty the message is not sent
                 try {
                     dos.writeUTF(messageTyped.getText()); // retreives the message from the text field and sends it to the server
                     chatText.append(username + ": " + messageTyped.getText() + "\n"); // adds the same message by appending it to the
-                } catch (IOException e) {                                             // text area for the current gui, so that the
+                }
+
+                catch (IOException e) {                                             // text area for the current gui, so that the
                     e.printStackTrace();                                              // client can see its own sent message
                 }
                 messageTyped.setText(""); // sets the text field to empty after sending the message
             }
+
             messageTyped.requestFocusInWindow();
         }
-
     }
 }
