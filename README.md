@@ -2,9 +2,17 @@
 
 A small server application that allows users to chat over a local network. The application containts the serverside executable and a clientside executable. The server application allows multiple users to connect to a single chat.
 
-## Usage (source-code)
+## Usage
 
-In order to run the application the `Server` class needs to be run first and after that a`Client` class can be run. 
-If the imported images do not work/load, the path to the images should be specified in the code.
+To run the server simply run the `server.jar` file by:
 
-The order in which the clients are run does not matter. If three clients are initialized, there should be three pop-up windows. In these windows any message can be typed and sent by pressing the send button. The sent message will appear on all the pop-up windows which creates a chat on a local network.
+```
+java server.jar
+```
+
+Once the server is launched any number of clients can connect over a local network. The server listens on port `59298`. Once launched the server will display the local IP address of the machine it is running on. To launch a client app simply run the `client.jar` with following arguments:
+
+```
+java client.jar <username> <server IP address>
+```
+Once succesfully connect the client app will able to send messages to other connected clients. For images to work in the client app a `resources` folder containg the images should be place in the same directory as `client.jar`.
