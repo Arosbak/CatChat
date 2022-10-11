@@ -15,4 +15,4 @@ Once the server is launched any number of clients can connect over a local netwo
 ```
 java client.jar <username> <server IP address>
 ```
-Once succesfully connect the client app will able to send messages to other connected clients. For images to work in the client app a `resources` folder containg the images should be place in the same directory as `client.jar`.
+Once succesfully connected, the client app will able to send messages to other connected clients. For images to work in the client app a `resources` folder containg the images should be place in the same directory as `client.jar`.
