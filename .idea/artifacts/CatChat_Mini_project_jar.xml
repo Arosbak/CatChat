@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="CatChat_Mini_project:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/CatChat_Mini_project_jar</output-path>
-    <root id="archive" name="CatChat_Mini_project.jar">
-      <element id="module-output" name="CatChat_Mini_project" />
-    </root>
-  </artifact>
-</component>

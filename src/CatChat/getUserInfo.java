@@ -1,4 +1,4 @@
-package Cat.chat.mini.project.aau.med3;
+package CatChat;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,6 +20,9 @@ public class getUserInfo {
         this.title = title;
     }
 
+    /**
+     * Main method for calling the GUI.
+     */
     public void run(){
         // Create a panel
         JPanel panel = new JPanel();

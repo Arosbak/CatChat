@@ -1,4 +1,4 @@
-package Cat.chat.mini.project.aau.med3;
+package CatChat;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.net.Socket;
 
 /**
- * <h1>client Handler</h1>
+ * <h1>clientHandler</h1>
  * A class that runs asynchronously and handles all the communication between a single client and the main server.
  *
  * @author Arijus Grotuzas
@@ -27,6 +27,9 @@ class clientHandler extends Thread {
         this.serverStatus = serverStatus;
     }
 
+    /**
+     * Main method for running the thread.
+     */
     @Override
     public void run() {
         String receivedMessage;
@@ -84,6 +87,7 @@ class clientHandler extends Thread {
 
     /**
      * Allows to reassign the private ID value of the client handler class.
+     *
      * @param newID a new ID for the client handler (client)
      */
     public void reassignID(int newID){

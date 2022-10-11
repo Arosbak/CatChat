@@ -1,10 +1,11 @@
-package Cat.chat.mini.project.aau.med3;
+package CatChat;
 
 import javax.swing.*;
 import java.awt.*;
 
 /**
  * <h1>displayStatus</h1>
+ * A class that displays a message or a given status in a form of a graphical user interface.
  *
  * @author Arijus Grotuzas
  */
@@ -20,6 +21,9 @@ public class displayStatus {
         this.pack = pack;
     }
 
+    /**
+     * Main method for calling the GUI.
+     */
     public void run() {
         // Create the panel
         Frame.setTitle(title);
@@ -39,9 +43,10 @@ public class displayStatus {
     }
 
     /**
+     * Converts a String to HTML format, by replacing all \n with br element.
      *
-     * @param orig f
-     * @return f
+     * @param orig A String containing \n
+     * @return An HTML formatted String
      */
     public static String convertToMultiline(String orig)
     {
@@ -49,8 +54,9 @@ public class displayStatus {
     }
 
     /**
+     * Changes the String to display.
      *
-     * @param newMessage A new message to display in the GUI
+     * @param newMessage A new String to display in the GUI
      */
     public void updateLabel(String newMessage) {
         statusLabel.setText(convertToMultiline(newMessage));

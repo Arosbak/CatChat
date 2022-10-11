@@ -1,10 +1,9 @@
-package Cat.chat.mini.project.aau.med3;
+package CatChat;
 
 import java.io.*;
 import java.util.*;
 import java.net.*;
 import java.util.List;
-
 
 /**
  * <h1>Server</h1>
@@ -25,7 +24,7 @@ public class server
      *
      * @param msg A message to broadcast to all the clients
      * @param notSendTo Client ID to which the message should not be sent e.g. the sender of the message
-     * @throws IOException f
+     * @throws IOException A specific client in the list has disconnected, thus data output stream (dos) has been closed
      */
     static void broadcastMessage(String msg, int notSendTo) throws IOException {
         for (int i = 0; i < clients.size(); i++) {
@@ -50,7 +49,7 @@ public class server
      * A method for retrieving the local IP address of the current machine.
      *
      * @return Local IP address of the machine the application is running on
-     * @throws RuntimeException f
+     * @throws RuntimeException The method cannot make a UDP connection to port 12345
      */
     public static String getLocalIP() throws RuntimeException {
         try (final DatagramSocket datagramSocket = new DatagramSocket()) {

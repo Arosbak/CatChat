@@ -1,4 +1,4 @@
-package Cat.chat.mini.project.aau.med3;
+package CatChat;
 
 import javax.swing.*;
 import java.io.*;
@@ -55,7 +55,7 @@ public class client
             dis = new DataInputStream(sock.getInputStream());
             dos = new DataOutputStream(sock.getOutputStream());
 
-            gui graphicalInterface = new gui(dis, dos, username, profileIcon);
+            clientGUI graphicalInterface = new clientGUI(dis, dos, username, profileIcon);
             graphicalInterface.start();
 
             // For passing a username of the current client to the server
