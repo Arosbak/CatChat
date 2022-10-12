@@ -17,7 +17,7 @@ public class server
     static List<clientHandler> clients = new ArrayList<>();
     static int numOfClients = 0;
     final static String localIP = server.getLocalIP();
-    final static int portNumber = 59298;
+    protected static int portNumber = 59298;
 
     /**
      * A method for broadcasting a message to all the connected clients.
@@ -60,15 +60,24 @@ public class server
         }
     }
 
-    public static void main(String[] args) throws IOException
+    public static void main(String[] args) throws IOException, NumberFormatException
     {
         // Initialize a gui that displays server's info
         displayStatus serverStatus = new displayStatus("Server status" , false);
         serverStatus.run();
 
+        if (args.length > 0){
+            try {
+                portNumber = Integer.parseInt(args[0]);
+            }
+            catch (NumberFormatException e) {
+                System.out.println("Invalid port number...");
+            }
+        }
+
         // Open server socket for communication
         ServerSocket serverSock = new ServerSocket(portNumber);
-        System.out.println("Running on IP Address: " + localIP);
+        System.out.println("Running on IP Address: " + localIP + ", Listening on port: " + portNumber);
 
         // Loop for getting client request
         while (true)
@@ -105,7 +114,7 @@ public class server
                 // Prints out the number of connected clients
                 System.out.println("Number of connected clients: " + clients.size());
             }
-            catch (Exception e){
+            catch (IOException e){
                 assert sock != null;
                 sock.close();
                 e.printStackTrace();

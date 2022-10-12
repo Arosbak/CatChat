@@ -9,7 +9,7 @@ import javax.swing.*;
  * <h1>clientGUI</h1>
  * A class that provides a graphical user interface for the client app.
  *
- * @author Arijus Grotuzas
+ * @author _
  */
 class clientGUI extends Thread {
 
@@ -26,7 +26,7 @@ class clientGUI extends Thread {
     final String username;
     final ImageIcon profile;
 
-    public clientGUI(DataInputStream dis, DataOutputStream dos, String username, ImageIcon profile){
+    protected clientGUI(DataInputStream dis, DataOutputStream dos, String username, ImageIcon profile){
         this.dis = dis;
         this.dos = dos;
         this.username = username;

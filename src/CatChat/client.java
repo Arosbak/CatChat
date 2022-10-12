@@ -20,25 +20,29 @@ public class client
     private static DataOutputStream dos;
     private static Socket sock;
     static boolean isConnected;
-    final static int portNumber = 59298;
 
-    public static void main(String[] args)
+    protected static String username = "Shocked boi";
+    protected static String serverIP = "192.168.50.26";
+    protected static int portNumber = 59298;
+
+    public static void main(String[] args) throws NumberFormatException
     {
         displayStatus clientStatus = new displayStatus("Client Status", true);
         isConnected = true;
         int time = 0;
 
-        String username;
-        String serverIP;
         String profileIconPath = "resources/cat3.png";
 
         if(args.length > 0){
             username = args[0];
             serverIP = args[1];
-        }
-        else{
-            username = "Shocked boi";
-            serverIP = "192.168.50.26";
+
+            try {
+                portNumber = Integer.parseInt(args[2]);
+            }
+            catch (NumberFormatException e) {
+                System.out.println("Invalid port number...");
+            }
         }
 
         try
@@ -76,7 +80,7 @@ public class client
         }
 
         // If connection is failed client is closed
-        catch(Exception e){
+        catch(IOException | InterruptedException e){
 
             StringWriter sw = new StringWriter();
             e.printStackTrace(new PrintWriter(sw));

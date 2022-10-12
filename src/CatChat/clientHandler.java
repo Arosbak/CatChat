@@ -19,7 +19,7 @@ class clientHandler extends Thread {
     final displayStatus serverStatus;
     private int clientID;
 
-    public clientHandler(Socket socket, DataInputStream dis, DataOutputStream dos, int clientID, displayStatus serverStatus) {
+    protected clientHandler(Socket socket, DataInputStream dis, DataOutputStream dos, int clientID, displayStatus serverStatus) {
         this.socket = socket;
         this.dis = dis;
         this.dos = dos;
