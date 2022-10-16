@@ -54,7 +54,7 @@ class clientHandler extends Thread {
                 receivedMessage = dis.readUTF();
 
                 // Prints the message to the console that the server received
-                System.out.println("Message received from client: " + clientID + ", '" + receivedMessage + "'");
+                System.out.println("Message received from client: " + username + ", '" + receivedMessage + "'");
 
                 // Creates a string with a passed username of a client and the received message
                 messageToSend = (username + ": " + receivedMessage);

@@ -30,10 +30,10 @@ class readMessage extends Thread{
             try {
                 received = dis.readUTF();
                 chatText.append(received  + "\n");
-                System.out.println(received);
             }
             catch (IOException e) {
                 client.isConnected = false;
+                System.out.print("\n");
                 e.printStackTrace();
                 break;
             }

@@ -22,7 +22,7 @@ public class client
     static boolean isConnected;
 
     protected static String username = "Shocked boi";
-    protected static String serverIP = "192.168.50.26";
+    protected static String serverIP = "localhost";
     protected static int portNumber = 59298;
 
     public static void main(String[] args) throws NumberFormatException
@@ -67,7 +67,8 @@ public class client
 
             // For checking if client is still connected to server
             while (true) {
-                System.out.println("Client has been running for: " + time + " seconds");
+                System.out.print("Client has been running for: " + time + " seconds");
+                System.out.print("\r");
 
                 if (!isConnected) {
                     System.out.print("Disconnected...");
@@ -76,7 +77,6 @@ public class client
                 Thread.sleep(1000);
                 time++;
             }
-
         }
 
         // If connection is failed client is closed
